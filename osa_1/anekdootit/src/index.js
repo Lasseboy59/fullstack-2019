@@ -22,8 +22,7 @@ const Statistics = ({daysAnecdote, maxVotes}) => {
 }
 
 const Button = props => {
-  const random = Math.round(Math.random() * 5);
-  return <button onClick={() => props.handleClick(random)}>{props.text}</button>
+  return <button onClick={props.handleClick}>{props.text}</button>
 }
 
 const App = () => {
@@ -39,8 +38,8 @@ const App = () => {
   return (
     <div>
       <Display anecdote={anecdotes[selected]} votes={votes[selected]} />
-      <Button handleClick={giveVote} text='vote' />
-      <Button handleClick={setSelected} text='next anecdote' />
+      <Button handleClick={() => giveVote()} text="vote" />
+      <Button handleClick={() => setSelected(Math.floor(Math.random() * 6))} text="next anecdote" />
       <Statistics daysAnecdote={[anecdotes[votes.indexOf(Math.max(...votes))]]} maxVotes={Math.max(...votes)} />
     </div>
   )
